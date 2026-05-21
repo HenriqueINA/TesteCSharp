@@ -13,11 +13,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "/workspaces/TesteCSharp/simpleapp/simpleapp.csproj",
+      "projectUniqueName": "/workspaces/TesteCSharp1/simpleapp/simpleapp.csproj",
       "projectName": "simpleapp",
-      "projectPath": "/workspaces/TesteCSharp/simpleapp/simpleapp.csproj",
+      "projectPath": "/workspaces/TesteCSharp1/simpleapp/simpleapp.csproj",
       "packagesPath": "/home/codespace/.nuget/packages/",
-      "outputPath": "/workspaces/TesteCSharp/simpleapp/obj/",
+      "outputPath": "/workspaces/TesteCSharp1/simpleapp/obj/",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "/home/codespace/.nuget/NuGet/NuGet.Config"

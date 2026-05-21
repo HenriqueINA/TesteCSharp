@@ -10,17 +10,7 @@ namespace simpleapp.Models
     public class DragonballApiResponse
     {
         public int id { get; set; }
-        public Name1 name { get; set; }
-        public Characters characters { get; set; }
-    }
-
-    public class Name1
-    {
-        public string official { get; set; }
-    }
-
-    public class Characters
-    {
-        public string png { get; set; }
+        public String name { get; set; }
+        public String image { get; set; }
     }
 }

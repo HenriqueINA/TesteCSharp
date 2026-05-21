@@ -20,7 +20,7 @@ public class DragonBallModel : PageModel
     public async Task OnGetAsync()
     {
         var client = _httpClientFactory.CreateClient("DragonBall");
-        var response = await client.GetAsync("https://dragonball-api.com/api/characters?race=Saiyan&affiliation=Z%20fighter");
+        var response = await client.GetAsync("?race=Saiyan&affiliation=Z%20fighter");
 
         if (response.IsSuccessStatusCode)
         {
@@ -31,8 +31,8 @@ public class DragonBallModel : PageModel
             Dragonball = dados.Select(d => new DragonBall
             {
                 id = d.id,
-                name = d.name?.official,
-                image = d.characters?.png
+                name = d.name,
+                image = d.image
             }).ToList();
         }
     }

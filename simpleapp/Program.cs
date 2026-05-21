@@ -7,14 +7,20 @@ builder.Services.AddRazorPages();
 builder.Services.AddHttpClient("RestCountries", c =>
 {
     c.BaseAddress = new Uri("https://restcountries.com/v3.1/all?fields=name,cca2,flags");
+})
+.ConfigurePrimaryHttpMessageHandler(() =>
+{
+    return new HttpClientHandler
+    {
+        SslProtocols = System.Security.Authentication.SslProtocols.Tls12
+    };
 });
 
 //builder.Services.AddHttpClient();
 builder.Services.AddHttpClient("DragonBall", c =>
 {
-    c.BaseAddress = new Uri("https://dragonball-api.com/api/characters?race=Saiyan&affiliation=Z%20fighter");
+    c.BaseAddress = new Uri("https://dragonball-api.com/api/characters");
 })
-
 .ConfigurePrimaryHttpMessageHandler(() =>
 {
     return new HttpClientHandler

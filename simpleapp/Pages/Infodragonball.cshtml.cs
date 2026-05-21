@@ -1,7 +1,9 @@
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
+using System.Text.Json;
+using simpleapp.Models;
 
-namespace simpleapp.Namespace
+namespace simpleapp.Pages
 {
     public class InfodragonballModel : PageModel
     {
@@ -12,18 +14,24 @@ namespace simpleapp.Namespace
             _httpClientFactory = httpClientFactory;
         }
 
-        public string Name  { get; set; }
-        public string Description  { get; set; }
-        public string Image  { get; set; }
-        public string Affiliation  { get; set; }
+        public DragonBallCharacterDetail Personagem { get; set; } = new();
 
-        public async Task<IActionResult> OnGetAsync (string name, string description, string image, string affiliation)
+        public async Task<IActionResult> OnGetAsync(int id)
         {
-            Name = name;
-            Description = description;
-            Image = image;
-            Affiliation = affiliation;
-            var client = _httpClientFactory.CreateClient("DragonBall");
+            var client = _httpClientFactory.CreateClient("DragonBallApi");
+            var response = await client.GetAsync($"api/characters/{id}");
+
+            if (response.IsSuccessStatusCode)
+            {
+                var json = await response.Content.ReadAsStringAsync();
+                var options = new JsonSerializerOptions { PropertyNameCaseInsensitive = true };
+                var personagem = JsonSerializer.Deserialize<DragonBallCharacterDetail>(json, options);
+
+                if (personagem != null)
+                {
+                    Personagem = personagem;
+                }
+            }
 
             return Page();
         }
